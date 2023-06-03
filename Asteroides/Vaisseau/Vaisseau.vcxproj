@@ -24,6 +24,9 @@
   <ItemGroup>
     <ClCompile Include="Src\Vaisseau.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resource\vaisseau.png" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>

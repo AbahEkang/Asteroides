@@ -8,11 +8,14 @@ namespace AstroVaisseau {
 
 
 	public: 
+		Vaisseau();
+		Vaisseau(sf::Color couleur);
 		void avancer();
 		void afficher(sf::RenderWindow& window);
 
 	private:
-		sf::CircleShape triangle{ 45, 4 };
-		sf::Color color{ 23, 45, 213 };
+		sf::Texture texture;
+		sf::Sprite sprite;
+		sf::Color color;
 	};
 }

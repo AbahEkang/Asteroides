@@ -14,10 +14,8 @@ int main(int argc, char* argv[])
 
 	sf::RenderWindow fenetre{ DIM_FENETRE,  TITRE };
 
-	//sf::CircleShape triangle{ 45, 5 };
-	//triangle.setFillColor(sf::Color{ 56, 89, 234 });
 
-	auto vaisseau = AstroVaisseau::Vaisseau();
+	auto vaisseau = AstroVaisseau::Vaisseau(sf::Color{235, 56, 0});
 
 	while (fenetre.isOpen())
 	{
@@ -34,7 +32,6 @@ int main(int argc, char* argv[])
 		}
 
 		fenetre.clear();
-		//fenetre.draw(triangle);
 		vaisseau.afficher(fenetre);
 		fenetre.display();
 
