@@ -29,9 +29,10 @@ int main(int argc, char* argv[])
 				fenetre.close();
 			}
 
-			vaisseau.ActualiserEtat(event);
 		}
 		
+		vaisseau.ActualiserEtat();
+
 		//Restart the chrono at every new loop
 		vaisseau.MettreAJour(chrono.restart().asSeconds());
 

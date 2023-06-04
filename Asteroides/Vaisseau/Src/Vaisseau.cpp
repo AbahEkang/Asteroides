@@ -13,34 +13,38 @@ namespace AstroVaisseau {
 
 		sprite.setTexture(texture);
 		sprite.setColor(color);
+		sprite.setOrigin(sprite.getLocalBounds().width / 2, sprite.getLocalBounds().height / 2);
+		sprite.setPosition(50, 50);
+
 	}
 	Vaisseau::Vaisseau(sf::Color const& couleur)
-		: color(couleur)
+		: Vaisseau()
 	{
+		color = couleur;
 		
-		if (!texture.loadFromFile("../Vaisseau/Resource/vaisseau.png"))
-		{
-			std::cerr;
-		}
+		//if (!texture.loadFromFile("../Vaisseau/Resource/vaisseau.png"))
+		//{
+		//	std::cerr;
+		//}
 
-		sprite.setTexture(texture);
-		sprite.setColor(color);
+		//sprite.setTexture(texture);
+		//sprite.setColor(color);
 
+		////Setting center of rotation
+		//sprite.setOrigin(sprite.getLocalBounds().width / 2, sprite.getLocalBounds().height / 2);
+		//sprite.setPosition( 50, 50 );
 	}
 	
 
 	void Vaisseau::Afficher(sf::RenderWindow& window) const {
 		window.draw(sprite);
 	}
-	void Vaisseau::ActualiserEtat(sf::Event const& event)
+	void Vaisseau::ActualiserEtat()
 	{
-		if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Up) {
-			accelerationEnCours = true;
-		}
-		else if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Up)
-		{
-			accelerationEnCours = false;
-		}
+		accelerationEnCours = sf::Keyboard::isKeyPressed(sf::Keyboard::Up);
+
+		TourneAGauche = sf::Keyboard::isKeyPressed(sf::Keyboard::Left);
+		TourneADroite = sf::Keyboard::isKeyPressed(sf::Keyboard::Right);
 
 	}
 
@@ -51,15 +55,33 @@ namespace AstroVaisseau {
 		if (accelerationEnCours) {
 
 			//Velocity is Acceleration x time
-			vitesse += 7000.f * temps;
+			//Move according to the angle of rotation
+			vitesse += Vecteur::CreerDepuisAngle(ACCELERATION * temps, sprite.getRotation());
 		}
 
 		//Deceleration is velocity x friction x time
-		vitesse -= vitesse * 2.f * temps;
+		vitesse -= vitesse * COEFF_FROTTEMENT * temps;
+
+		//Movement in the axis measure of the distance covered in certain time at given velocity
+		auto deplacement = vitesse * temps;
 
 
 
 		//Distance is Velocity x time
-		sprite.move(vitesse * temps, 0);
+		//Where is the object located on the x - y axis
+		sprite.move( deplacement.x, deplacement.y );
+
+		//Turn left or right
+		if (TourneADroite) {
+
+			//To the right, turns clockwise => positive angle
+			sprite.rotate(VITESSE_ANGULAIRE * temps);
+		}
+
+		if (TourneAGauche) {
+			//To the left, turns anti-clockwise => negative angle
+			//Gives position of the sprite according to angular velocity and time employed to rotate 
+			sprite.rotate(-VITESSE_ANGULAIRE * temps);
+		}
 	}
 }

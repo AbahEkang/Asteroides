@@ -1,5 +1,5 @@
 #pragma once
-
+#include "Vecteur.h"
 #include "SFML/Graphics.hpp"
 
 namespace AstroVaisseau {
@@ -11,7 +11,7 @@ namespace AstroVaisseau {
 		Vaisseau();
 		Vaisseau(sf::Color const& couleur);
 		void Afficher(sf::RenderWindow& window) const;
-		void ActualiserEtat(sf::Event const& event);
+		void ActualiserEtat();
 
 		//Update the distance move by the vessel on screen
 		void MettreAJour(const float temps);
@@ -20,9 +20,14 @@ namespace AstroVaisseau {
 		sf::Texture texture{};
 		sf::Sprite sprite{};
 		sf::Color color{sf::Color::Red};
-		float vitesse{ 0.f };
+		Vecteur vitesse{0.f, 0.f };
 		bool accelerationEnCours{false};
+
+		bool TourneAGauche{ false };
+		bool TourneADroite{ false };
+		//Static constants
 		static constexpr float ACCELERATION{ 7000.f };
 		static constexpr float COEFF_FROTTEMENT{2.f}; //Coefficient of Friction
+		static constexpr float VITESSE_ANGULAIRE{50.f};
 	};
 }
