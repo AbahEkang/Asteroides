@@ -2,6 +2,10 @@
 #include <iostream>
 
 namespace AstroVaisseau {
+
+	const float ACCELERATION{ 7000.f };
+	const float COEFF_FROTTEMENT{ 2.f };
+
 	Vaisseau::Vaisseau()
 	{
 		if (!texture.loadFromFile("../Vaisseau/Resource/vaisseau.png"))
@@ -12,7 +16,7 @@ namespace AstroVaisseau {
 		sprite.setTexture(texture);
 		sprite.setColor(color);
 	}
-	Vaisseau::Vaisseau(sf::Color couleur)
+	Vaisseau::Vaisseau(sf::Color const& couleur)
 		: color(couleur)
 	{
 		
@@ -27,10 +31,10 @@ namespace AstroVaisseau {
 	}
 	
 
-	void Vaisseau::Afficher(sf::RenderWindow& window) {
+	void Vaisseau::Afficher(sf::RenderWindow& window) const {
 		window.draw(sprite);
 	}
-	void Vaisseau::ActualiserEtat(sf::Event& event)
+	void Vaisseau::ActualiserEtat(sf::Event const& event)
 	{
 		if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Up) {
 			accelerationEnCours = true;
@@ -43,7 +47,7 @@ namespace AstroVaisseau {
 	}
 
 	//Update the distance move by the vessel on screen
-	void Vaisseau::MettreAJour(float temps)
+	void Vaisseau::MettreAJour(const float temps)
 	{
 
 		if (accelerationEnCours) {
@@ -51,6 +55,11 @@ namespace AstroVaisseau {
 			//Velocity is Acceleration x time
 			vitesse += 7000.f * temps;
 		}
+
+		//Deceleration is velocity x friction x time
+		vitesse -= vitesse * 2.f * temps;
+
+
 
 		//Distance is Velocity x time
 		sprite.move(vitesse * temps, 0);
