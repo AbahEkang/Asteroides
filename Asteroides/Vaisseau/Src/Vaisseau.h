@@ -22,7 +22,7 @@ namespace AstroVaisseau {
 		sf::Color color{sf::Color::Red};
 		float vitesse{ 0.f };
 		bool accelerationEnCours{false};
-		static const float ACCELERATION;
-		static const float COEFF_FROTTEMENT; //Coefficient of Friction
+		static constexpr float ACCELERATION{ 7000.f };
+		static constexpr float COEFF_FROTTEMENT{2.f}; //Coefficient of Friction
 	};
 }

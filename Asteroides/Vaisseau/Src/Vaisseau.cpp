@@ -3,8 +3,6 @@
 
 namespace AstroVaisseau {
 
-	const float ACCELERATION{ 7000.f };
-	const float COEFF_FROTTEMENT{ 2.f };
 
 	Vaisseau::Vaisseau()
 	{
