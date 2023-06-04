@@ -10,12 +10,17 @@ namespace AstroVaisseau {
 	public: 
 		Vaisseau();
 		Vaisseau(sf::Color couleur);
-		void avancer();
-		void afficher(sf::RenderWindow& window);
+		void Afficher(sf::RenderWindow& window);
+		void ActualiserEtat(sf::Event& event);
+
+		//Update the distance move by the vessel on screen
+		void MettreAJour(float temps);
 
 	private:
-		sf::Texture texture;
-		sf::Sprite sprite;
-		sf::Color color;
+		sf::Texture texture{};
+		sf::Sprite sprite{};
+		sf::Color color{sf::Color::Red};
+		float vitesse{ 0.f };
+		bool accelerationEnCours{false};
 	};
 }

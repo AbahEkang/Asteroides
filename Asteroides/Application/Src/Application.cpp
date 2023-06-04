@@ -17,6 +17,9 @@ int main(int argc, char* argv[])
 
 	auto vaisseau = AstroVaisseau::Vaisseau(sf::Color{235, 56, 0});
 
+	//Time to be used to calculate movement, and velocity
+	auto chrono = sf::Clock{};
+
 	while (fenetre.isOpen())
 	{
 		auto event = sf::Event();
@@ -26,13 +29,14 @@ int main(int argc, char* argv[])
 				fenetre.close();
 			}
 
-			if (event.type == sf::Event::KeyPressed) {
-				vaisseau.avancer();
-			}
+			vaisseau.ActualiserEtat(event);
 		}
+		
+		//Restart the chrono at every new loop
+		vaisseau.MettreAJour(chrono.restart().asSeconds());
 
 		fenetre.clear();
-		vaisseau.afficher(fenetre);
+		vaisseau.Afficher(fenetre);
 		fenetre.display();
 
 	}
