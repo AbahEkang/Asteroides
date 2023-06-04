@@ -1,4 +1,6 @@
 #pragma once
+
+//Need this, to use M_PI
 #define _USE_MATH_DEFINES
 #include <math.h>
 namespace AstroVaisseau {
