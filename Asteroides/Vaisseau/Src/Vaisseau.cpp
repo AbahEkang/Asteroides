@@ -69,7 +69,7 @@ namespace AstroVaisseau {
 
 		//Distance is Velocity x time
 		//Where is the object located on the x - y axis
-		sprite.move( deplacement.x, deplacement.y );
+		sprite.setPosition(Position.getX(), Position.getY());
 
 		//Turn left or right
 		if (TourneADroite) {
