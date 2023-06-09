@@ -19,10 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Src\Coordonnees.h" />
     <ClInclude Include="Src\Vaisseau.h" />
     <ClInclude Include="Src\Vecteur.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Src\Coordonnees.cpp" />
     <ClCompile Include="Src\Vaisseau.cpp" />
     <ClCompile Include="Src\Vecteur.cpp" />
   </ItemGroup>

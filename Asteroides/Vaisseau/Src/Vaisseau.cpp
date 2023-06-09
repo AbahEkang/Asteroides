@@ -14,7 +14,7 @@ namespace AstroVaisseau {
 		sprite.setTexture(texture);
 		sprite.setColor(color);
 		sprite.setOrigin(sprite.getLocalBounds().width / 2, sprite.getLocalBounds().height / 2);
-		sprite.setPosition(50, 50);
+		sprite.setPosition(Position.getX(), Position.getY());
 
 	}
 	Vaisseau::Vaisseau(sf::Color const& couleur)
@@ -64,9 +64,9 @@ namespace AstroVaisseau {
 
 		//Movement in the axis measure of the distance covered in certain time at given velocity
 		auto deplacement = vitesse * temps;
+		Position += deplacement;
 
-
-
+		
 		//Distance is Velocity x time
 		//Where is the object located on the x - y axis
 		sprite.setPosition(Position.getX(), Position.getY());

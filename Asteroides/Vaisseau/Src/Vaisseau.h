@@ -1,5 +1,6 @@
 #pragma once
 #include "Vecteur.h"
+#include "Coordonnees.h"
 #include "SFML/Graphics.hpp"
 
 namespace AstroVaisseau {
@@ -23,8 +24,13 @@ namespace AstroVaisseau {
 		Vecteur vitesse{0.f, 0.f };
 		bool accelerationEnCours{false};
 
+		//Coordinates
+		Coordonnees Position{};
+
+		//Directions
 		bool TourneAGauche{ false };
 		bool TourneADroite{ false };
+
 		//Static constants
 		static constexpr float ACCELERATION{ 7000.f };
 		static constexpr float COEFF_FROTTEMENT{2.f}; //Coefficient of Friction

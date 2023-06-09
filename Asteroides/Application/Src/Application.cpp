@@ -1,8 +1,10 @@
 #include <iostream>
 #include "Vaisseau.h"
+#include "Coordonnees.h"
 
 
-
+constexpr float LONGUEUR_FENETRE{ 800.f };
+constexpr float HAUTEUR_FENETRE{ 600.f };
 
 int main(int argc, char* argv[])
 {
@@ -14,6 +16,7 @@ int main(int argc, char* argv[])
 
 	sf::RenderWindow fenetre{ DIM_FENETRE,  TITRE };
 
+	AstroVaisseau::Coordonnees::InitialiserEspace(LONGUEUR_FENETRE, HAUTEUR_FENETRE);
 
 	auto vaisseau = AstroVaisseau::Vaisseau(sf::Color{235, 56, 0});
 
