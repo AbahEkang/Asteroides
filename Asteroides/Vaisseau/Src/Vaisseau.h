@@ -2,30 +2,27 @@
 #include "Vecteur.h"
 #include "Coordonnees.h"
 #include "SFML/Graphics.hpp"
+#include "ElementEspace.h"
 
-namespace AstroVaisseau {
+namespace ElementEspace {
 
-	class Vaisseau {
+	class Vaisseau : public ElementEspace
+	{
 
 
 	public: 
-		Vaisseau();
+		Vaisseau() = delete;
+		using ElementEspace::ElementEspace;
 		Vaisseau(sf::Color const& couleur);
-		void Afficher(sf::RenderWindow& window) const;
+		
 		void ActualiserEtat();
 
-		//Update the distance move by the vessel on screen
 		void MettreAJour(const float temps);
 
 	private:
-		sf::Texture texture{};
-		sf::Sprite sprite{};
+	
 		sf::Color color{sf::Color::Red};
-		Vecteur vitesse{0.f, 0.f };
 		bool accelerationEnCours{false};
-
-		//Coordinates
-		Coordonnees Position{};
 
 		//Directions
 		bool TourneAGauche{ false };
@@ -35,5 +32,8 @@ namespace AstroVaisseau {
 		static constexpr float ACCELERATION{ 7000.f };
 		static constexpr float COEFF_FROTTEMENT{2.f}; //Coefficient of Friction
 		static constexpr float VITESSE_ANGULAIRE{50.f};
+
+		//Image
+
 	};
 }

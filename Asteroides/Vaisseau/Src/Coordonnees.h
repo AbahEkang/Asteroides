@@ -3,7 +3,7 @@
 #include "Vecteur.h"
 
 
-namespace AstroVaisseau {
+namespace ElementEspace {
 
 	class Coordonnees
 	{
@@ -12,7 +12,8 @@ namespace AstroVaisseau {
 		Coordonnees();
 		float getX() const;
 		float getY() const;
-
+		static float getLimitX();
+		static float getLimitY();
 		static void InitialiserEspace(const float longueur, const float hauteur);
 
 		Vecteur operator +=(const Vecteur vector);

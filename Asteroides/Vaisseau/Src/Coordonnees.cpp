@@ -3,7 +3,7 @@
 
 
 
-namespace AstroVaisseau {
+namespace ElementEspace {
 
     float Coordonnees::LimitX = 0.f;
     float Coordonnees::LimitY = 0.f;
@@ -22,6 +22,14 @@ namespace AstroVaisseau {
     float Coordonnees::getY() const
     {
         return y;
+    }
+    float Coordonnees::getLimitX()
+    {
+        return LimitX;
+    }
+    float Coordonnees::getLimitY()
+    {
+        return LimitY;
     }
     void Coordonnees::InitialiserEspace(const float longueur, const float hauteur)
     {
