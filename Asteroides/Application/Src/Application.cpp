@@ -2,7 +2,7 @@
 #include "Vaisseau.h"
 #include "Coordonnees.h"
 #include "Asteroides.h"
-
+#include<array>
 
 constexpr float LONGUEUR_FENETRE{ 800.f };
 constexpr float HAUTEUR_FENETRE{ 600.f };
@@ -20,8 +20,16 @@ int main(int argc, char* argv[])
 
 	ElementEspace::Coordonnees::InitialiserEspace(LONGUEUR_FENETRE, HAUTEUR_FENETRE);
 
-	auto asteroide = ElementEspace::Asteroides{ };
+	auto asteroide1 = ElementEspace::Asteroides{ };
+	auto asteroide2 = ElementEspace::Asteroides{ };
+	auto asteroide3 = ElementEspace::Asteroides{ };
+
+
+	
 	auto vaisseau = ElementEspace::Vaisseau(sf::Color{235, 56, 0});
+
+	auto Elements = std::array<ElementEspace::ElementEspace*, 4>{&asteroide1,&asteroide2, &asteroide3, &vaisseau};
+
 
 	//Time to be used to calculate movement, and velocity
 	auto chrono = sf::Clock{};
@@ -37,23 +45,30 @@ int main(int argc, char* argv[])
 
 		}
 		
+
 		vaisseau.ActualiserEtat();
 
 
 		//Restart the chrono at every new loop
 		auto tempsBoucle = chrono.restart().asSeconds();
 
-		asteroide.MettreAJour(tempsBoucle);
-		vaisseau.MettreAJour(tempsBoucle);
+		for (auto* element : Elements) {
+			element->MettreAJour(tempsBoucle);
+		}
+		
 
 
 		fenetre.clear();
-		asteroide.Afficher(fenetre);
+		
+		for (auto* element : Elements) {
 
-		vaisseau.Afficher(fenetre);
+			//(*element).Afficher(fenetre);
+			element->Afficher(fenetre);
+		}
+
+		
 
 		fenetre.display();
-
 	}
 
 

@@ -47,19 +47,23 @@ namespace ElementEspace {
 		//sprite.setPosition(Position.getX(), Position.getY());
 
 		//Don't Repeat yourself
-		ElementEspace::MettreAJour(temps);
 
 		//Turn left or right
 		if (TourneADroite) {
 
 			//To the right, turns clockwise => positive angle
-			sprite.rotate(VITESSE_ANGULAIRE * temps);
-		}
-
-		if (TourneAGauche) {
+			angularVelocity = VITESSE_ANGULAIRE;
+		}else if (TourneAGauche) {
 			//To the left, turns anti-clockwise => negative angle
 			//Gives position of the sprite according to angular velocity and time employed to rotate 
-			sprite.rotate(-VITESSE_ANGULAIRE * temps);
+			angularVelocity -= VITESSE_ANGULAIRE;
+
 		}
+		else {
+			angularVelocity = 0;
+		}
+
+		ElementEspace::MettreAJour(temps);
+
 	}
 }

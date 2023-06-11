@@ -14,6 +14,10 @@ namespace ElementEspace {
     {
 
     }
+    Coordonnees::Coordonnees(float X, float Y)
+        :x(X), y(Y)
+    {
+    }
     float Coordonnees::getX() const
     {
         return x;

@@ -26,6 +26,8 @@ namespace ElementEspace {
 		//Coordinates
 		Coordonnees Position{};
 
+		float angularVelocity{};
+
 	};
 
 }

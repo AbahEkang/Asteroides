@@ -49,4 +49,6 @@ void ElementEspace::ElementEspace::MettreAJour(const float temps)
 	//Distance is Velocity x time
 	//Where is the object located on the x - y axis
 	sprite.setPosition(Position.getX(), Position.getY());
+
+	sprite.rotate(angularVelocity * temps);
 }

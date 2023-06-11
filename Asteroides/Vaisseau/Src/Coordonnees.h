@@ -10,6 +10,7 @@ namespace ElementEspace {
 	public:
 
 		Coordonnees();
+		Coordonnees(float, float);
 		float getX() const;
 		float getY() const;
 		static float getLimitX();

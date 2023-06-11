@@ -3,6 +3,7 @@
 #include "Vecteur.h"
 #include "Coordonnees.h"
 #include "ElementEspace.h"
+#include <random>
 
 
 
