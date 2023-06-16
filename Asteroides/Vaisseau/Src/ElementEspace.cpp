@@ -66,7 +66,6 @@ void ElementEspace::ElementEspace::MettreAJour(const float temps)
 	//Distance is Velocity x time
 	//Where is the object located on the x - y axis
 
-	std::cout << "X: " << Position.getX() << ", Y: " << Position.getY() << std::endl;
 
 	sprite.setPosition(Position.getX(), Position.getY());
 
