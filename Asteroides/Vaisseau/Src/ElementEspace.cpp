@@ -40,6 +40,23 @@ void ElementEspace::ElementEspace::Afficher(sf::RenderWindow& window) const
 
 }
 
+float ElementEspace::ElementEspace::getRayon() const
+{
+	return sprite.getLocalBounds().height / 2.f;
+}
+
+void ElementEspace::ElementEspace::TesterCollision(ElementEspace& autre)
+{
+	//Distance within center of the two objects
+	auto distance = Position.CalculerDistance(autre.Position);
+
+		if (distance < this->getRayon() + autre.getRayon()) 
+		{
+			sprite.setColor(sf::Color::Red);
+			autre.sprite.setColor(sf::Color::Red);
+		}
+}
+
 void ElementEspace::ElementEspace::MettreAJour(const float temps)
 {
 	auto deplacement = vitesse * temps;
@@ -48,7 +65,12 @@ void ElementEspace::ElementEspace::MettreAJour(const float temps)
 
 	//Distance is Velocity x time
 	//Where is the object located on the x - y axis
+
+	std::cout << "X: " << Position.getX() << ", Y: " << Position.getY() << std::endl;
+
 	sprite.setPosition(Position.getX(), Position.getY());
 
 	sprite.rotate(angularVelocity * temps);
+
+
 }

@@ -26,7 +26,7 @@ int main(int argc, char* argv[])
 
 
 	
-	auto vaisseau = ElementEspace::Vaisseau(sf::Color{235, 56, 0});
+	auto vaisseau = ElementEspace::Vaisseau(sf::Color{0, 56, 235});
 
 	auto Elements = std::array<ElementEspace::ElementEspace*, 4>{&asteroide1,&asteroide2, &asteroide3, &vaisseau};
 
@@ -49,6 +49,7 @@ int main(int argc, char* argv[])
 		vaisseau.ActualiserEtat();
 
 
+
 		//Restart the chrono at every new loop
 		auto tempsBoucle = chrono.restart().asSeconds();
 
@@ -56,6 +57,11 @@ int main(int argc, char* argv[])
 			element->MettreAJour(tempsBoucle);
 		}
 		
+		for (auto* element : Elements) {
+			if (element != &vaisseau) {
+				element->TesterCollision(vaisseau);
+			}
+		}
 
 
 		fenetre.clear();

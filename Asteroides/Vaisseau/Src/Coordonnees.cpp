@@ -1,5 +1,6 @@
 #include "Coordonnees.h"
 #include "Vaisseau.h"
+#include<algorithm>
 
 
 
@@ -37,12 +38,16 @@ namespace ElementEspace {
     }
     void Coordonnees::InitialiserEspace(const float longueur, const float hauteur)
     {
-        if (longueur > 0.f ) {
+        /*if (longueur != 0 || hauteur != 0) {
+            std::cerr << "Attention: l'espace est deja initialise\n";
+        }*/
+        if(longueur > 0.f ) {
             Coordonnees::LimitX = longueur;
         }
         else {
             std::cerr;
         }
+        
 
         if (hauteur > 0.f) {
             Coordonnees::LimitY = hauteur;
@@ -50,7 +55,22 @@ namespace ElementEspace {
         else {
             std::cerr;
         }
+        
     }
+    float Coordonnees::CalculerDistance(Coordonnees const& autre) const
+    {
+
+        //We want to catter for screen limits(lower and upper)
+        auto delta = Vecteur{
+            std::min({abs(x - autre.x), abs(x - autre.x - LimitX), abs(x - autre.x + LimitX)}),
+            std::min({abs(y - autre.y), abs(y - autre.y - LimitY), abs(y - autre.y + LimitY)})
+        };
+
+       
+
+        return sqrt((delta.x * delta.x) + (delta.y * delta.y));
+    }
+
     Vecteur Coordonnees::operator+=(const Vecteur vector)
     {
 
