@@ -14,7 +14,7 @@ namespace ElementEspace {
 
 	public:
 		using ElementEspace::ElementEspace;
-		Asteroides();
+		explicit Asteroides();
 
 	};
 

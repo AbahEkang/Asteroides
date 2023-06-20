@@ -10,8 +10,13 @@ namespace ElementEspace {
 	{
 
 	public:
-		ElementEspace() = delete;
-		ElementEspace(std::string_view const& path_to_image);
+		//ElementEspace() = delete;
+		explicit ElementEspace(std::string_view const& path_to_image);
+		ElementEspace(ElementEspace const&) = delete;
+
+		//Delete operator to be sure to not create copies
+		void operator=(ElementEspace const&) = delete;
+
 		void Afficher(sf::RenderWindow& window) const;
 
 		float getRayon() const;

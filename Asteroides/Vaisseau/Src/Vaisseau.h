@@ -11,13 +11,13 @@ namespace ElementEspace {
 
 
 	public: 
-		Vaisseau() = delete;
+		//Vaisseau() = delete;
 		using ElementEspace::ElementEspace;
-		Vaisseau(sf::Color const& couleur);
+		explicit Vaisseau(sf::Color const& couleur);
 		
 		void ActualiserEtat();
 
-		void MettreAJour(const float temps);
+		virtual void MettreAJour(const float temps) override;
 
 	private:
 	
