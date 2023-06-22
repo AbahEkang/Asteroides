@@ -54,13 +54,16 @@ int main(int argc, char* argv[])
 		auto tempsBoucle = chrono.restart().asSeconds();
 
 		for (auto* element : Elements) {
-			element->MettreAJour(tempsBoucle);
+			element->Actualiser(tempsBoucle);
 		}
 		
 		for (auto* element : Elements) {
-			if (element != &vaisseau) {
-				element->TesterCollision(vaisseau);
+			for (auto* element2 : Elements) {
+				if (element != element2) {
+					element->TesterCollision(*element2);
+				}
 			}
+		
 		}
 
 

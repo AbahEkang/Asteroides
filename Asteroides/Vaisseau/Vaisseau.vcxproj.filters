@@ -30,6 +30,9 @@
     <ClInclude Include="Src\ElementEspace.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Explosion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Vaisseau.cpp">
@@ -47,12 +50,18 @@
     <ClCompile Include="Src\ElementEspace.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Explosion.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resource\vaisseau.png">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Resource\asteroide.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resource\explosion.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

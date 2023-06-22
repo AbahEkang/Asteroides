@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Src\Explosion.h" />
     <ClInclude Include="Src\ElementEspace.h" />
     <ClInclude Include="Src\Asteroides.h" />
     <ClInclude Include="Src\Coordonnees.h" />
@@ -26,6 +27,7 @@
     <ClInclude Include="Src\Vecteur.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Src\Explosion.cpp" />
     <ClCompile Include="Src\ElementEspace.cpp" />
     <ClCompile Include="Src\Asteroides.cpp" />
     <ClCompile Include="Src\Coordonnees.cpp" />
@@ -34,6 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resource\asteroide.png" />
+    <Image Include="Resource\explosion.png" />
     <Image Include="Resource\vaisseau.png" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

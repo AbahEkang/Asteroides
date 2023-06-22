@@ -15,6 +15,7 @@ namespace ElementEspace {
 	public:
 		using ElementEspace::ElementEspace;
 		explicit Asteroides();
+		virtual void ReagirCollision() override;
 
 	};
 

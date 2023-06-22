@@ -25,3 +25,4 @@ ElementEspace::Vecteur ElementEspace::Vecteur::CreerDepuisAngle(float taille, fl
 {
 	return { taille * (float)cos((angleEnDegree/180.f) * M_PI), taille * (float)sin((angleEnDegree/180.f)* M_PI) };
 }
+
