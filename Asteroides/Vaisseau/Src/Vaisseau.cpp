@@ -23,47 +23,81 @@ namespace ElementEspace {
 
 	}
 
+	void Vaisseau::ReagirCollision()
+	{
+		if (!detruit) {
+			detruit = true;
+			explosion.Demarrer(Position);
+		}
+		
+	}
+
+	void Vaisseau::Afficher(sf::RenderWindow& window) const 
+	{
+		if (!detruit) {
+			ElementEspace::Afficher(window);
+		}
+		else {
+			explosion.Afficher(window);
+		}
+
+	}
+
+
 	//Update the distance move by the vessel on screen
 	void Vaisseau::MettreAJour(const float temps)
 	{
 
-		if (accelerationEnCours) {
+		if (!detruit)
+		{
 
-			//Velocity is Acceleration x time
-			//Move according to the angle of rotation
-			vitesse += Vecteur::CreerDepuisAngle(ACCELERATION * temps, sprite.getRotation());
+			if (accelerationEnCours) {
+
+				//Velocity is Acceleration x time
+				//Move according to the angle of rotation
+				vitesse += Vecteur::CreerDepuisAngle(ACCELERATION * temps, sprite.getRotation());
+			}
+
+			//Deceleration is velocity x friction x time
+			vitesse -= vitesse * COEFF_FROTTEMENT * temps;
+
+			//Movement in the axis measure of the distance covered in certain time at given velocity
+			//auto deplacement = vitesse * temps;
+			//Position += deplacement;
+
+			//
+			////Distance is Velocity x time
+			////Where is the object located on the x - y axis
+			//sprite.setPosition(Position.getX(), Position.getY());
+
+			//Don't Repeat yourself
+
+			//Turn left or right
+			if (TourneADroite) {
+
+				//To the right, turns clockwise => positive angle
+				angularVelocity = VITESSE_ANGULAIRE;
+			}
+			else if (TourneAGauche) {
+				//To the left, turns anti-clockwise => negative angle
+				//Gives position of the sprite according to angular velocity and time employed to rotate 
+				angularVelocity -= VITESSE_ANGULAIRE;
+
+			}
+			else {
+				angularVelocity = 0;
+			}
+
+		}
+		else
+		{
+
 		}
 
-		//Deceleration is velocity x friction x time
-		vitesse -= vitesse * COEFF_FROTTEMENT * temps;
+		
 
-		//Movement in the axis measure of the distance covered in certain time at given velocity
-		//auto deplacement = vitesse * temps;
-		//Position += deplacement;
-
-		//
-		////Distance is Velocity x time
-		////Where is the object located on the x - y axis
-		//sprite.setPosition(Position.getX(), Position.getY());
-
-		//Don't Repeat yourself
-
-		//Turn left or right
-		if (TourneADroite) {
-
-			//To the right, turns clockwise => positive angle
-			angularVelocity = VITESSE_ANGULAIRE;
-		}else if (TourneAGauche) {
-			//To the left, turns anti-clockwise => negative angle
-			//Gives position of the sprite according to angular velocity and time employed to rotate 
-			angularVelocity -= VITESSE_ANGULAIRE;
-
-		}
-		else {
-			angularVelocity = 0;
-		}
-
-		ElementEspace::MettreAJour(temps);
+		//ElementEspace::MettreAJour(temps);
+		explosion.Actualiser(temps);
 
 	}
 }

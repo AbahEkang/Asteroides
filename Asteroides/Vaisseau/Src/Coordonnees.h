@@ -9,8 +9,8 @@ namespace ElementEspace {
 	{
 	public:
 
-		explicit Coordonnees();
-		explicit Coordonnees(float, float);
+		Coordonnees();
+		Coordonnees(float, float);
 
 		float getX() const;
 

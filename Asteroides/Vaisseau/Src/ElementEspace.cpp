@@ -52,13 +52,19 @@ void ElementEspace::ElementEspace::TesterCollision(ElementEspace& autre)
 
 		if (distance < this->getRayon() + autre.getRayon()) 
 		{
-			sprite.setColor(sf::Color::Red);
-			autre.sprite.setColor(sf::Color::Red);
+			/*sprite.setColor(sf::Color::Red);
+			autre.sprite.setColor(sf::Color::Red);*/
+			ReagirCollision();
+
 		}
 }
 
-void ElementEspace::ElementEspace::MettreAJour(const float temps)
+
+
+void ElementEspace::ElementEspace::Actualiser(const float temps)
 {
+	MettreAJour(temps);
+
 	auto deplacement = vitesse * temps;
 	Position += deplacement;
 
@@ -73,3 +79,6 @@ void ElementEspace::ElementEspace::MettreAJour(const float temps)
 
 
 }
+
+void ElementEspace::ElementEspace::MettreAJour(float temps)
+{}

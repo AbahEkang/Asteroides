@@ -3,6 +3,7 @@
 #include "Coordonnees.h"
 #include "SFML/Graphics.hpp"
 #include "ElementEspace.h"
+#include "Explosion.h"
 
 namespace ElementEspace {
 
@@ -17,7 +18,12 @@ namespace ElementEspace {
 		
 		void ActualiserEtat();
 
+		virtual void ReagirCollision() override;
+		virtual void Afficher(sf::RenderWindow& window) const override;
+	
+	protected:
 		virtual void MettreAJour(const float temps) override;
+
 
 	private:
 	
@@ -33,7 +39,10 @@ namespace ElementEspace {
 		static constexpr float COEFF_FROTTEMENT{2.f}; //Coefficient of Friction
 		static constexpr float VITESSE_ANGULAIRE{50.f};
 
-		//Image
+		//React to collision
+		bool detruit{ false };
+
+		Explosion explosion{};
 
 	};
 }

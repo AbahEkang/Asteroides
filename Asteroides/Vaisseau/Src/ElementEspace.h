@@ -17,17 +17,24 @@ namespace ElementEspace {
 		//Delete operator to be sure to not create copies
 		void operator=(ElementEspace const&) = delete;
 
-		void Afficher(sf::RenderWindow& window) const;
+		virtual void Afficher(sf::RenderWindow& window) const;
 
 		float getRayon() const;
 
 		//If collision, change sprite color to red
 		void TesterCollision(ElementEspace& autre);
 
+		virtual void ReagirCollision() = 0;
+
+		void Actualiser(float temps);
+		
+
+
+	protected:
+
 		//Update the distance moved by the vessel on screen
 		virtual void MettreAJour(const float temps);
 
-	protected:
 		sf::Texture texture{};
 		sf::Sprite sprite{};
 		Vecteur vitesse{ 0.f, 0.f };

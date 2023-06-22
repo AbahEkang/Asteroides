@@ -20,3 +20,7 @@ ElementEspace::Asteroides::Asteroides()
 	angularVelocity = distributionAngularVelocity(generator);
 }
 
+void ElementEspace::Asteroides::ReagirCollision()
+{
+}
+
