@@ -10,7 +10,7 @@ namespace ElementEspace {
 	{
 
 	public:
-		//ElementEspace() = delete;
+		virtual ~ElementEspace() = default;
 		explicit ElementEspace(std::string_view const& path_to_image);
 		ElementEspace(ElementEspace const&) = delete;
 
