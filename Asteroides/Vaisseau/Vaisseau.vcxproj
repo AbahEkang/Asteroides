@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Src\Espace.h" />
     <ClInclude Include="Src\Explosion.h" />
     <ClInclude Include="Src\ElementEspace.h" />
     <ClInclude Include="Src\Asteroides.h" />
@@ -27,6 +28,7 @@
     <ClInclude Include="Src\Vecteur.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Src\Espace.cpp" />
     <ClCompile Include="Src\Explosion.cpp" />
     <ClCompile Include="Src\ElementEspace.cpp" />
     <ClCompile Include="Src\Asteroides.cpp" />

@@ -2,7 +2,8 @@
 #include "Vaisseau.h"
 #include "Coordonnees.h"
 #include "Asteroides.h"
-#include<array>
+#include "Espace.h"
+#include<vector>
 
 constexpr float LONGUEUR_FENETRE{ 800.f };
 constexpr float HAUTEUR_FENETRE{ 600.f };
@@ -24,15 +25,17 @@ int main(int argc, char* argv[])
 	auto asteroide2 = ElementEspace::Asteroides{ };
 	auto asteroide3 = ElementEspace::Asteroides{ };
 
+	auto espace = Espace::Espace{};
 
 	
-	auto vaisseau = ElementEspace::Vaisseau(sf::Color{0, 56, 235});
+	auto vaisseau = ElementEspace::Vaisseau(espace, sf::Color{0, 56, 235});
 
-	auto Elements = std::array<ElementEspace::ElementEspace*, 4>{&asteroide1,&asteroide2, &asteroide3, &vaisseau};
+	//auto Elements = std::vector<ElementEspace::ElementEspace*>{};
 
+
+	auto partieDemarree{ false };
 
 	//Time to be used to calculate movement, and velocity
-	auto chrono = sf::Clock{};
 
 	while (fenetre.isOpen())
 	{
@@ -43,39 +46,25 @@ int main(int argc, char* argv[])
 				fenetre.close();
 			}
 
-		}
-		
+			if (event.type == sf::Event::KeyPressed && !partieDemarree)
+			{
+				espace.Ajouter(vaisseau);
+				espace.Ajouter(asteroide1);
+				espace.Ajouter(asteroide2);
+				espace.Ajouter(asteroide3);
 
-		vaisseau.ActualiserEtat();
-
-
-
-		//Restart the chrono at every new loop
-		auto tempsBoucle = chrono.restart().asSeconds();
-
-		for (auto* element : Elements) {
-			element->Actualiser(tempsBoucle);
-		}
-		
-		for (auto* element : Elements) {
-			for (auto* element2 : Elements) {
-				if (element != element2) {
-					element->TesterCollision(*element2);
-				}
+				partieDemarree = true;
 			}
-		
-		}
 
+		}
+		
+		espace.Actualiser();
+		espace.GererCollision();
+		espace.CleanDestroyed();
 
 		fenetre.clear();
 		
-		for (auto* element : Elements) {
-
-			//(*element).Afficher(fenetre);
-			element->Afficher(fenetre);
-		}
-
-		
+		espace.Afficher(fenetre);
 
 		fenetre.display();
 	}

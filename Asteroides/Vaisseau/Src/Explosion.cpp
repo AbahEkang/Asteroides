@@ -24,16 +24,11 @@ namespace ElementEspace {
 		{
 			sprite.setScale(age / DUREE_VIE, age / DUREE_VIE);
 		}
+		else {
+			detruit = true;  //intended for method IsDestroyed of class Espace
+		}
 
 		//ElementEspace::MettreAJour(temps);
-	}
-
-	void Explosion::Afficher(sf::RenderWindow& window) const
-	{
-		if (age < DUREE_VIE) {
-
-			ElementEspace::Afficher(window);
-		}
 	}
 
 

@@ -28,7 +28,7 @@ namespace ElementEspace {
 
 		void Actualiser(float temps);
 		
-
+		static inline bool IsDestroyed(ElementEspace* element) { return element->detruit; }
 
 	protected:
 
@@ -44,6 +44,9 @@ namespace ElementEspace {
 		Coordonnees Position{};
 
 		float angularVelocity{};
+
+		bool detruit{ false };
+
 
 	};
 

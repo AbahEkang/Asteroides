@@ -4,8 +4,9 @@
 namespace ElementEspace {
 	
 	
-	Vaisseau::Vaisseau(sf::Color const& couleur)
-		:ElementEspace::ElementEspace("../Vaisseau/Resource/vaisseau.png")
+	Vaisseau::Vaisseau(Espace::Espace& p_espace, sf::Color const& couleur)
+		:ElementEspace::ElementEspace("../Vaisseau/Resource/vaisseau.png"),
+		espace(p_espace)
 	{
 		//color = couleur;
 		sprite.setColor(sf::Color(couleur));
@@ -28,29 +29,32 @@ namespace ElementEspace {
 		if (!detruit) {
 			detruit = true;
 			explosion.Demarrer(Position);
+			espace.Ajouter(explosion);
 		}
 		
 	}
 
-	void Vaisseau::Afficher(sf::RenderWindow& window) const 
-	{
-		if (!detruit) {
-			ElementEspace::Afficher(window);
-		}
-		else {
-			explosion.Afficher(window);
-		}
+	//void Vaisseau::Afficher(sf::RenderWindow& window) const 
+	//{
+	//	if (!detruit) {
+	//		ElementEspace::Afficher(window);
+	//	}
+	//	else {
+	//		explosion.Afficher(window);
+	//	}
 
-	}
+	//}
 
 
 	//Update the distance move by the vessel on screen
 	void Vaisseau::MettreAJour(const float temps)
 	{
+		ActualiserEtat();
+
 
 		if (!detruit)
 		{
-
+			
 			if (accelerationEnCours) {
 
 				//Velocity is Acceleration x time
@@ -82,22 +86,17 @@ namespace ElementEspace {
 				//To the left, turns anti-clockwise => negative angle
 				//Gives position of the sprite according to angular velocity and time employed to rotate 
 				angularVelocity -= VITESSE_ANGULAIRE;
-
+				
 			}
 			else {
 				angularVelocity = 0;
 			}
 
 		}
-		else
-		{
-
-		}
+		
 
 		
 
-		//ElementEspace::MettreAJour(temps);
-		explosion.Actualiser(temps);
 
 	}
 }

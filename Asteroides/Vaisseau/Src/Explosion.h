@@ -9,7 +9,6 @@ namespace ElementEspace {
 	public:
 		Explosion();
 		void Demarrer(Coordonnees const& p_position);
-		virtual void Afficher(sf::RenderWindow& window) const;
 		virtual void ReagirCollision() override;
 	
 	protected:

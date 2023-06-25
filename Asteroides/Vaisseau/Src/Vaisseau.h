@@ -4,6 +4,7 @@
 #include "SFML/Graphics.hpp"
 #include "ElementEspace.h"
 #include "Explosion.h"
+#include "Espace.h"
 
 namespace ElementEspace {
 
@@ -14,12 +15,11 @@ namespace ElementEspace {
 	public: 
 		//Vaisseau() = delete;
 		using ElementEspace::ElementEspace;
-		explicit Vaisseau(sf::Color const& couleur);
+		explicit Vaisseau(Espace::Espace& p_espace, sf::Color const& couleur);
 		
-		void ActualiserEtat();
 
 		virtual void ReagirCollision() override;
-		virtual void Afficher(sf::RenderWindow& window) const override;
+		//virtual void Afficher(sf::RenderWindow& window) const override;
 	
 	protected:
 		virtual void MettreAJour(const float temps) override;
@@ -34,15 +34,17 @@ namespace ElementEspace {
 		bool TourneAGauche{ false };
 		bool TourneADroite{ false };
 
+		void ActualiserEtat();
+
 		//Static constants
 		static constexpr float ACCELERATION{ 7000.f };
 		static constexpr float COEFF_FROTTEMENT{2.f}; //Coefficient of Friction
 		static constexpr float VITESSE_ANGULAIRE{50.f};
 
 		//React to collision
-		bool detruit{ false };
 
 		Explosion explosion{};
+		Espace::Espace& espace;
 
 	};
 }
