@@ -6,6 +6,9 @@
 
 namespace ElementEspace {
 
+
+	enum class ElementEspaceType{VAISSEAU, MISSILE, ASTEROIDE, AUTRE};
+
 	class ElementEspace
 	{
 
@@ -24,16 +27,17 @@ namespace ElementEspace {
 		//If collision, change sprite color to red
 		void TesterCollision(ElementEspace& autre);
 
-		virtual void ReagirCollision() = 0;
+		virtual void ReagirCollision(ElementEspaceType type) = 0;
 
 		void Actualiser(float temps);
 		
-		static inline bool IsDestroyed(ElementEspace* element) { return element->detruit; }
+		static inline bool IsDestroyed(std::unique_ptr<ElementEspace>& element) { return element->detruit; }
 
 	protected:
 
 		//Update the distance moved by the vessel on screen
 		virtual void MettreAJour(const float temps);
+		ElementEspaceType type{ ElementEspaceType::AUTRE };
 
 		sf::Texture texture{};
 		sf::Sprite sprite{};

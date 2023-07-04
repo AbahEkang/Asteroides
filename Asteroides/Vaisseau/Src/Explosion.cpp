@@ -3,22 +3,17 @@
 
 namespace ElementEspace {
 
-	Explosion::Explosion()
+	Explosion::Explosion(Coordonnees const& p_position)
 		:ElementEspace("../Vaisseau/Resource/explosion.png")
 	{
+		Position = p_position;
 	}
 
-	void Explosion::Demarrer(Coordonnees const& p_position)
-	{
-		Position = p_position;
-		demaree = true;
-	}
+	
 
 	void Explosion::MettreAJour(float temps)
 	{
-		if (demaree) {
-			age += temps;
-		}
+		age += temps;
 
 		if (age < DUREE_VIE) 
 		{
@@ -32,7 +27,7 @@ namespace ElementEspace {
 	}
 
 
-	void Explosion::ReagirCollision()
+	void Explosion::ReagirCollision(ElementEspaceType typeAutre)
 	{
 	}
 

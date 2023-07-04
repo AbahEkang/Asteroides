@@ -7,7 +7,7 @@
 
 constexpr float LONGUEUR_FENETRE{ 800.f };
 constexpr float HAUTEUR_FENETRE{ 600.f };
-
+const sf::Color COULEUR_VAISSEAU{sf::Color{211, 145, 0}};
 
 int main(int argc, char* argv[])
 {
@@ -21,9 +21,10 @@ int main(int argc, char* argv[])
 
 	ElementEspace::Coordonnees::InitialiserEspace(LONGUEUR_FENETRE, HAUTEUR_FENETRE);
 
-	auto asteroide1 = ElementEspace::Asteroides{ };
+	/*auto asteroide1 = ElementEspace::Asteroides{ };
 	auto asteroide2 = ElementEspace::Asteroides{ };
-	auto asteroide3 = ElementEspace::Asteroides{ };
+	auto asteroide3 = ElementEspace::Asteroides{ };*/
+
 
 	auto espace = Espace::Espace{};
 
@@ -48,10 +49,14 @@ int main(int argc, char* argv[])
 
 			if (event.type == sf::Event::KeyPressed && !partieDemarree)
 			{
-				espace.Ajouter(vaisseau);
-				espace.Ajouter(asteroide1);
-				espace.Ajouter(asteroide2);
-				espace.Ajouter(asteroide3);
+				//ptr_Vaisseau = std::make_unique<ElementEspace::Vaisseau>( espace, COULEUR_VAISSEAU );
+
+				//Creating vessel directly in the space
+				espace.Ajouter(std::make_unique<ElementEspace::Vaisseau>(espace, COULEUR_VAISSEAU));
+
+				espace.Ajouter(std::make_unique<ElementEspace::Asteroides>());
+				espace.Ajouter(std::make_unique<ElementEspace::Asteroides>());
+				espace.Ajouter(std::make_unique<ElementEspace::Asteroides>());
 
 				partieDemarree = true;
 			}

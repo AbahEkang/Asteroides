@@ -6,9 +6,10 @@ namespace Espace {
 	{
 	}
 
-	void Espace::Ajouter(ElementEspace::ElementEspace& element)
+	void Espace::Ajouter(std::unique_ptr<ElementEspace::ElementEspace> element)
 	{
-		Elements.push_back(&element);
+		//Move (not copy) of the unique pointer
+		Elements.push_back(std::move(element));
 	}
 
 	void Espace::Actualiser()
@@ -17,8 +18,8 @@ namespace Espace {
 		//Restart the chrono at every new loop
 		auto tempsBoucle = chrono.restart().asSeconds();
 
-		for (auto* element : Elements) {
-			element->Actualiser(tempsBoucle);
+		for (auto i{ 0u}; i < Elements.size(); i++) {
+			Elements[i]->Actualiser(tempsBoucle);
 		}
 	}
 
@@ -38,7 +39,7 @@ namespace Espace {
 	void Espace::Afficher(sf::RenderWindow& fenetre) const
 	{
 
-		for (auto* element : Elements) {
+		for (auto& element : Elements) {
 
 			//(*element).Afficher(fenetre);
 			element->Afficher(fenetre);

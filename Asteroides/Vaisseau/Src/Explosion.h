@@ -7,9 +7,9 @@ namespace ElementEspace {
 	class Explosion : public ElementEspace
 	{
 	public:
-		Explosion();
-		void Demarrer(Coordonnees const& p_position);
-		virtual void ReagirCollision() override;
+		Explosion(Coordonnees const& p_position);
+
+		virtual void ReagirCollision(ElementEspaceType typeAutre) override;
 	
 	protected:
 		virtual void MettreAJour(const float temps) override;

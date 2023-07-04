@@ -54,7 +54,7 @@ void ElementEspace::ElementEspace::TesterCollision(ElementEspace& autre)
 		{
 			/*sprite.setColor(sf::Color::Red);
 			autre.sprite.setColor(sf::Color::Red);*/
-			ReagirCollision();
+			ReagirCollision(autre.type);
 
 		}
 }

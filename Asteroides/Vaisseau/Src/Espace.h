@@ -11,7 +11,7 @@ namespace Espace {
 
 	public:
 		Espace();
-		void Ajouter(ElementEspace::ElementEspace&);
+		void Ajouter(std::unique_ptr<ElementEspace::ElementEspace>);
 		void Actualiser();
 		void GererCollision();
 		void Afficher(sf::RenderWindow&) const;
@@ -21,7 +21,7 @@ namespace Espace {
 
 	private:
 
-		std::vector<ElementEspace::ElementEspace*> Elements{};
+		std::vector<std::unique_ptr<ElementEspace::ElementEspace>> Elements{};
 		sf::Clock chrono{};
 	};
 

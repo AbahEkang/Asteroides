@@ -5,6 +5,7 @@
 ElementEspace::Asteroides::Asteroides()
 	:ElementEspace::ElementEspace("../Vaisseau/Resource/asteroide.png")
 {
+	type = ElementEspaceType::ASTEROIDE;
 	auto generator = std::random_device{};
 	auto distributionPosition = std::uniform_real_distribution<float>{ -150, 150 };
 	auto distributionVelocity = std::uniform_real_distribution<float>{ 80, 120 };
@@ -20,7 +21,7 @@ ElementEspace::Asteroides::Asteroides()
 	angularVelocity = distributionAngularVelocity(generator);
 }
 
-void ElementEspace::Asteroides::ReagirCollision()
+void ElementEspace::Asteroides::ReagirCollision(ElementEspaceType typeAutre)
 {
 }
 

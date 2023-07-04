@@ -18,7 +18,7 @@ namespace ElementEspace {
 		explicit Vaisseau(Espace::Espace& p_espace, sf::Color const& couleur);
 		
 
-		virtual void ReagirCollision() override;
+		virtual void ReagirCollision(ElementEspaceType typeAutre) override;
 		//virtual void Afficher(sf::RenderWindow& window) const override;
 	
 	protected:
@@ -42,9 +42,7 @@ namespace ElementEspace {
 		static constexpr float VITESSE_ANGULAIRE{50.f};
 
 		//React to collision
-
-		Explosion explosion{};
 		Espace::Espace& espace;
-
+		sf::Clock lastShot{};
 	};
 }

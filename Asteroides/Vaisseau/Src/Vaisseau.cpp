@@ -1,5 +1,6 @@
 #include "Vaisseau.h"
 #include <iostream>
+#include "Missile.h"
 
 namespace ElementEspace {
 	
@@ -10,7 +11,7 @@ namespace ElementEspace {
 	{
 		//color = couleur;
 		sprite.setColor(sf::Color(couleur));
-		
+		type = ElementEspaceType::VAISSEAU;
 		
 	}
 	
@@ -21,15 +22,19 @@ namespace ElementEspace {
 
 		TourneAGauche = sf::Keyboard::isKeyPressed(sf::Keyboard::Left);
 		TourneADroite = sf::Keyboard::isKeyPressed(sf::Keyboard::Right);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && lastShot.getElapsedTime().asSeconds() > 0.1)
+		{
+			espace.Ajouter(std::make_unique<Missile>(Position, sprite.getRotation()));
+			lastShot.restart();
+		}
 
 	}
 
-	void Vaisseau::ReagirCollision()
+	void Vaisseau::ReagirCollision(ElementEspaceType typeAutre)
 	{
-		if (!detruit) {
+		if (typeAutre == ElementEspaceType::ASTEROIDE) {
 			detruit = true;
-			explosion.Demarrer(Position);
-			espace.Ajouter(explosion);
+			espace.Ajouter(std::make_unique<Explosion>(Position));
 		}
 		
 	}
@@ -80,7 +85,7 @@ namespace ElementEspace {
 			if (TourneADroite) {
 
 				//To the right, turns clockwise => positive angle
-				angularVelocity = VITESSE_ANGULAIRE;
+				angularVelocity += VITESSE_ANGULAIRE;
 			}
 			else if (TourneAGauche) {
 				//To the left, turns anti-clockwise => negative angle
