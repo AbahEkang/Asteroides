@@ -54,9 +54,9 @@ int main(int argc, char* argv[])
 				//Creating vessel directly in the space
 				espace.Ajouter(std::make_unique<ElementEspace::Vaisseau>(espace, COULEUR_VAISSEAU));
 
-				espace.Ajouter(std::make_unique<ElementEspace::Asteroides>());
-				espace.Ajouter(std::make_unique<ElementEspace::Asteroides>());
-				espace.Ajouter(std::make_unique<ElementEspace::Asteroides>());
+				espace.Ajouter(std::make_unique<ElementEspace::Asteroides>(espace));
+				espace.Ajouter(std::make_unique<ElementEspace::Asteroides>(espace));
+				espace.Ajouter(std::make_unique<ElementEspace::Asteroides>(espace));
 
 				partieDemarree = true;
 			}
@@ -65,13 +65,15 @@ int main(int argc, char* argv[])
 		
 		espace.Actualiser();
 		espace.GererCollision();
-		espace.CleanDestroyed();
 
 		fenetre.clear();
 		
 		espace.Afficher(fenetre);
 
 		fenetre.display();
+
+		espace.CleanDestroyed();
+
 	}
 
 

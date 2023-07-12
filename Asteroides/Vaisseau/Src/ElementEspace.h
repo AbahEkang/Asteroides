@@ -1,5 +1,6 @@
 #pragma once
 #include "Coordonnees.h"
+#include "ResourceManager.h"
 #include "Vecteur.h"
 #include<SFML/Graphics.hpp>
 
@@ -39,7 +40,8 @@ namespace ElementEspace {
 		virtual void MettreAJour(const float temps);
 		ElementEspaceType type{ ElementEspaceType::AUTRE };
 
-		sf::Texture texture{};
+		//sf::Texture texture{};
+
 		sf::Sprite sprite{};
 		Vecteur vitesse{ 0.f, 0.f };
 		std::string_view const& path_to_image{};

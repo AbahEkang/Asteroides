@@ -25,6 +25,7 @@
     <ClInclude Include="Src\ElementEspace.h" />
     <ClInclude Include="Src\Asteroides.h" />
     <ClInclude Include="Src\Coordonnees.h" />
+    <ClInclude Include="Src\ResourceManager.h" />
     <ClInclude Include="Src\Vaisseau.h" />
     <ClInclude Include="Src\Vecteur.h" />
   </ItemGroup>
@@ -35,6 +36,7 @@
     <ClCompile Include="Src\ElementEspace.cpp" />
     <ClCompile Include="Src\Asteroides.cpp" />
     <ClCompile Include="Src\Coordonnees.cpp" />
+    <ClCompile Include="Src\ResourceManager.cpp" />
     <ClCompile Include="Src\Vaisseau.cpp" />
     <ClCompile Include="Src\Vecteur.cpp" />
   </ItemGroup>

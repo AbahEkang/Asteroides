@@ -22,6 +22,7 @@ namespace Espace {
 	private:
 
 		std::vector<std::unique_ptr<ElementEspace::ElementEspace>> Elements{};
+		std::vector<std::unique_ptr<ElementEspace::ElementEspace>> toBeAdded{};
 		sf::Clock chrono{};
 	};
 

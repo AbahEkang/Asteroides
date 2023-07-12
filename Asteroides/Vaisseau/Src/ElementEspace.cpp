@@ -7,13 +7,10 @@ ElementEspace::ElementEspace::ElementEspace(std::string_view const& image)
 {
 
 	
-	if (!texture.loadFromFile(path_to_image.data())) {
-		std::cerr;
-	}
+	sprite.setTexture(Resources::ResourceManager::GetResource(image));
 	sprite.setOrigin(sprite.getLocalBounds().width/2, sprite.getLocalBounds().height/2);
 
 	sprite.setPosition(Position.getX(), Position.getY());
-	sprite.setTexture(texture);
 
 }
 
@@ -42,7 +39,7 @@ void ElementEspace::ElementEspace::Afficher(sf::RenderWindow& window) const
 
 float ElementEspace::ElementEspace::getRayon() const
 {
-	return sprite.getLocalBounds().height / 2.f;
+	return sprite.getGlobalBounds().height / 2.4f;
 }
 
 void ElementEspace::ElementEspace::TesterCollision(ElementEspace& autre)
